@@ -1,13 +1,3 @@
-"""
-define the routes of our api,
-working with the scheme below.
-    ___________Dog___________
-    |+ id: integer          |
-    |+ name: String         |
-    |+ picture: String      |
-    |+ is_adopted: Boolean  |
-    |+ create_date: Datetime|
-"""
 # Python
 
 
@@ -108,11 +98,13 @@ async def create_dog():
 
     Parameters:
 
-        - id: int
-        - name: str
-        - picture: str
-        - is_adopted: Bool
-        - create_date: datetime
+        - id: Integer
+        - name: String
+        - picture: String
+        - is_adopted: Boolean
+        - create_date: Datetime
+        - update_date: Datetime
+        - id_user: Integer
 
     Return:
 
@@ -124,13 +116,51 @@ async def create_dog():
 @router.put(
     path="/api/dogs/{dog_id}",
     tags=["Dog"],
-    summary=""
+    summary="Update a dog by ID"
 )
 async def update_dog():
-    """Update a record (dog) by name"""
+    """
+    Update a Registered Dog
+
+    In this path operation, a query is made to the database
+    through the ID to obtain a registered dog, after obtaining
+    this information, we take the data that was sent from the
+    client, replacing respectively as specified in the parameters.
+
+    Parameters:
+
+        - id: Integer
+        - name: String
+        - picture: String
+        - is_adopted: Boolean
+        - create_date: Datetime
+        - update_date: Datetime
+        - id_user: Integer
+
+    Return:
+
+        Returns a confirmation message of the dog update in the database.
+    """
     pass
 
-@router.delete("/api/dogs/{name}", tags=["Dog"])
+@router.delete(
+    path="/api/dogs/{dog_id}",
+    tags=["Dog"],
+    summary="Delete a dog by ID"
+)
 async def delete_dog():
-    """Delete a record (dog) by name."""
+    """
+    Delete a Dog
+
+    In this path operation, a query is made to the database for
+    the elimination of a dog using if id.
+
+    Parameters:
+
+        - dog_id: Integer
+
+    Return:
+
+        Returns a message confirming the removal of the dog from the database.
+    """
     pass
