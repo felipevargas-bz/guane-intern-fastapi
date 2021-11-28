@@ -145,22 +145,29 @@ async def update_dog():
 
 @router.delete(
     path="/api/dogs/{dog_id}",
-    tags=["Dog"],
-    summary="Delete a dog by ID"
+    tags=["Dog"]
 )
 async def delete_dog():
     """
-    Delete a Dog
+    Delete Dog
 
-    In this path operation, a query is made to the database for
-    the elimination of a dog using if id.
+    In this path operation, a dog is created and then stored
+    in the database. For the picture field, an external API
+    is consumed from where the url of a random image is obtained.
 
     Parameters:
 
-        - dog_id: Integer
+        - id: Integer
+        - name: String
+        - picture: String
+        - is_adopted: Boolean
+        - create_date: Datetime
+        - update_date: Datetime
+        - id_user: Integer
 
     Return:
 
-        Returns a message confirming the removal of the dog from the database.
+        Returns a confirmation message of the dog's registration
+        in the database
     """
     pass
