@@ -33,3 +33,4 @@ class UserInDB(UserBase):
 class User(UserInDB):
     class Config:
         orm_mode = True
+

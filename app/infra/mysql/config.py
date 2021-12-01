@@ -1,4 +1,3 @@
-from json import load as json_load
 from logging import getLogger
 
 from fastapi import FastAPI

@@ -1,3 +1,2 @@
-from .bank import Bank
+from .dog import Dog
 from .user import User
-from .user_bank import UserBank
