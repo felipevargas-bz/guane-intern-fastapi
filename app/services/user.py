@@ -1,10 +1,10 @@
-from app.infra.postgres.crud.user import crud_user
-from app.infra.services.base_service import BaseService
+from infra.mysql.crud.user import crud_user
+from infra.services.base_service import BaseService
 
 
 class UserService(BaseService):
-    async def get_by_username(self, username: str):
-        user = await self._queries.get_by_username(username=username)
+    async def get_by_email(self, email: str):
+        user = await self._queries.get_by_username(email=email)
         return user
 
 

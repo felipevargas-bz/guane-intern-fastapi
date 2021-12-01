@@ -6,12 +6,12 @@ from pydantic import BaseModel, Field
 
 class UserBase(BaseModel):
     name: str
-    username: str
+    email: str
     password: str
 
 
 class CreateUser(UserBase):
-    bank_id: Optional[List[int]]
+    pass
 
 
 class UpdateUser(BaseModel):

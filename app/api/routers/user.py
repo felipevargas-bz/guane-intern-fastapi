@@ -1,6 +1,12 @@
 from fastapi import APIRouter
-
-
+from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from schemas.user import (
+    CreateUser,
+    SearchUser,
+    UpdateUser,
+    User
+    )
+from services.user import user_service
 
 router = APIRouter()
 
@@ -82,10 +88,11 @@ async def user_dogs():
 
 @router.post(
     path="/api/users",
+    response_model=User,
     tags=["User"],
     summary="Register An User"
 )
-async def create_user():
+async def create_user(new_user: CreateUser):
     """
     Register An User
 
@@ -105,7 +112,12 @@ async def create_user():
         Returns a confirmation message that the user has been registered
         in the database.
     """
-    pass
+    user = await user_service.get_by_email(email=new_user.email)
+    if user is not None:
+        raise HTTPException(status_code=400, detail="user already exists in database")
+    user = await user_service.create(obj_in=new_user)
+
+    return user
 
 
 @router.put(

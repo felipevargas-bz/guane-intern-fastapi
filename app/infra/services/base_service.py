@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Optional, Union
 
-from app.infra.services.base import IServiceBase
-from app.schemas.general import CreateSchemaType, CrudType, ModelType, UpdateSchemaType
+from infra.services.base import IServiceBase
+from schemas.general import CreateSchemaType, CrudType, ModelType, UpdateSchemaType
 
 
 class BaseService(IServiceBase[CreateSchemaType, UpdateSchemaType]):

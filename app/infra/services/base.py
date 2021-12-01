@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Generic, List, Optional, Union
 
-from app.schemas.general import CreateSchemaType, CrudType, ModelType, UpdateSchemaType
+from schemas.general import CreateSchemaType, CrudType, ModelType, UpdateSchemaType
 
 
 class IServiceBase(Generic[CreateSchemaType, UpdateSchemaType], ABC):  # type: ignore
