@@ -22,7 +22,7 @@ class UpdateUser(BaseModel):
 
 class SearchUser(BaseModel):
     name__icontains: Optional[str] = Field(None, alias="name")
-    username__icontains: Optional[str] = Field(None, alias="username")
+    email__icontains: Optional[str] = Field(None, alias="username")
 
 
 class UserInDB(UserBase):

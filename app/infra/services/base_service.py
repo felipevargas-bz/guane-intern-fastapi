@@ -20,15 +20,15 @@ class BaseService(IServiceBase[CreateSchemaType, UpdateSchemaType]):
 
     async def get_all(
         self,
-        *,
-        payload: Optional[Dict[str, Any]],
-        skip: int,
-        limit: int,
+        # *,
+        # payload: Optional[Dict[str, Any]],
+        # skip: int,
+        # limit: int,
     ) -> List[ModelType]:
         objs_found = await self._queries.get_all(
-            payload=payload,
-            skip=skip,
-            limit=limit,
+            # payload=payload,
+            # skip=skip,
+            # limit=limit,
         )
         return objs_found
 

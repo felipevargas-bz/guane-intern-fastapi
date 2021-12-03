@@ -6,7 +6,7 @@ from schemas.user import CreateUser, UpdateUser
 
 
 class CRUDUser(CRUDBase[User, CreateUser, UpdateUser]):
-    async def get_by_username(self, email: str) -> Optional[Dict[str, Any]]:
+    async def get_by_email(self, email: str) -> Optional[Dict[str, Any]]:
         user = await self.model.get_or_none(email=email)
         return user
 

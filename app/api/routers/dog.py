@@ -2,7 +2,19 @@
 
 
 # FastApi
+from typing import List
 from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException, Path, Query
+
+# Local
+from schemas.dog import (
+    CreateDog,
+    SearchDog,
+    UpdateDog,
+    Dog
+    )
+from services.dog import dog_service
+from services.user import user_service
 
 
 router = APIRouter()
@@ -31,7 +43,7 @@ async def dogs():
         it to JSON, returning a JSON with the data from the
         List containing all registered dogs.
     """
-    pass
+    return await dog_service.get_all()
 
 
 @router.get(
@@ -59,14 +71,16 @@ async def is_adopted():
         List containing all registered dogs.
 
     """
-    pass
+    all_dogs = await dog_service.get_all()
+
+    return [dog for dog in all_dogs if dog.__dict__["is_adopted"] == True]
 
 @router.get(
     path="/api/dogs/{dog_id}",
     tags=["Dog"],
     summary="Get Dog By ID"
 )
-async def dog_id():
+async def dog_id(dog_id: int):
     """
     Get a Dog
 
@@ -81,14 +95,15 @@ async def dog_id():
 
         Returns the information of a dog registered in the database
     """
-    pass
+    return await dog_service.get_by_id(dog_id)
 
 @router.post(
     path="/api/dogs",
+    response_model=Dog,
     tags=["Dog"],
     summary="Register a Dog"
 )
-async def create_dog():
+async def create_dog(new_dog: CreateDog):
     """
     Register a Dog
 
@@ -111,7 +126,8 @@ async def create_dog():
         Returns a confirmation message of the dog's registration
         in the database
     """
-    pass
+    dog = await dog_service.create(obj_in=new_dog)
+    return dog
 
 @router.put(
     path="/api/dogs/{dog_id}",
@@ -147,7 +163,7 @@ async def update_dog():
     path="/api/dogs/{dog_id}",
     tags=["Dog"]
 )
-async def delete_dog():
+async def delete_dog(dog_id: int):
     """
     Delete Dog
 

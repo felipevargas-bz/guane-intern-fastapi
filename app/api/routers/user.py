@@ -1,5 +1,7 @@
+from typing import List, Dict
 from fastapi import APIRouter
 from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from starlette.responses import JSONResponse
 from schemas.user import (
     CreateUser,
     SearchUser,
@@ -13,6 +15,7 @@ router = APIRouter()
 
 @router.get(
     path="/api/users",
+    response_class=JSONResponse,
     tags=["User"],
     summary="Get All Users"
 )
@@ -33,7 +36,7 @@ async def get_users():
         Returns a list of users registered in the database.
 
     """
-    pass
+    return user_service.get_all()
 
 
 @router.get(
